@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Roboto, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -12,6 +12,14 @@ const roboto = Roboto({
 	subsets: ["latin"],
 	weight: ["400", "700"],
 	style: ["normal", "italic"],
+	variable: "--font-roboto",
+});
+
+const playfairDisplay = Playfair_Display({
+	subsets: ["latin"],
+	weight: ["400", "500", "700", "800", "900"],
+	style: ["normal", "italic"],
+	variable: "--font-playfair",
 });
 
 export default function RootLayout({
@@ -21,7 +29,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${roboto.className}`}>{children}</body>
+			<body
+				className={`${roboto.variable} ${playfairDisplay.variable} font-sans`}
+			>
+				{children}
+			</body>
 		</html>
 	);
 }
