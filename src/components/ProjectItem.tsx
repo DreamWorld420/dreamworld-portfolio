@@ -32,7 +32,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 				</Link>
 				<p className="min-h-fit text-neutral-300">{body}</p>
 				{labels?.length && (
-					<div className="flex gap-2">
+					<div className="mt-1 flex gap-2">
 						{labels.map((item) => {
 							return (
 								<div

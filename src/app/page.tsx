@@ -1,29 +1,24 @@
-"use client";
-
-import { useMemo } from "react";
-
 import Image from "next/image";
 import Link from "next/link";
 
+import AboutMe from "@/components/AboutMe";
 import ProjectItem from "@/components/ProjectItem";
+import { getRSSFeed } from "@/services";
 
-export default function Home() {
-	const age = useMemo(() => {
-		const birthDate = new Date(2000, 5, 11);
-		const now = new Date();
+export default async function Home() {
+	let blogFeed;
+	try {
+		blogFeed = await getRSSFeed();
+	} catch {
+		blogFeed = null;
+	}
 
-		let years = now.getFullYear() - birthDate.getFullYear();
-		const hasHadBirthdayThisYear =
-			now.getMonth() > birthDate.getMonth() ||
-			(now.getMonth() === birthDate.getMonth() &&
-				now.getDate() >= birthDate.getDate());
-
-		if (!hasHadBirthdayThisYear) {
-			years--;
-		}
-
-		return years;
-	}, []);
+	function formatDate(date: Date) {
+		const year = date.getFullYear();
+		const month = String(date.getMonth() + 1).padStart(2, "0");
+		const day = String(date.getDate()).padStart(2, "0");
+		return `${year}/${month}/${day}`;
+	}
 
 	return (
 		<div className="hide-scrollbar mx-auto grid h-screen max-w-screen-lg grid-cols-1 gap-10 overflow-auto px-6 py-10 md:grid-cols-12 md:py-20">
@@ -36,6 +31,7 @@ export default function Home() {
 						height={100}
 						className="rounded-full border border-solid border-neutral-100"
 						quality={100}
+						priority
 					/>
 					<div>
 						<h1 className="font-serif text-xl font-bold">Kasra Bozorgmehr</h1>
@@ -126,24 +122,7 @@ export default function Home() {
 				id="detail"
 				className="hide-scrollbar flex h-fit flex-col gap-8 overflow-auto pb-10 md:col-span-8 md:max-h-[calc(100vh_-_80px)] md:pb-20 md:pt-0"
 			>
-				<section className="flex flex-col gap-2">
-					<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
-						About Me
-					</h2>
-					<p>
-						Hi, I’m Kasra, a <strong>{age}-year-old</strong> front-end developer
-						who enjoys building <strong>clean and fast web apps</strong> with
-						Next.js, TypeScript, and React. I like turning{" "}
-						<strong>
-							old code into something simple and easy to work with
-						</strong>
-						. Whether I’m working alone or with a team, I focus on writing{" "}
-						<strong>clean code</strong> that everyone can understand and
-						improve. Outside of work, I love{" "}
-						<strong>learning new things and sharing what I know</strong> with
-						others.
-					</p>
-				</section>
+				<AboutMe />
 				<section className="flex flex-col gap-2">
 					<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
 						Projects
@@ -215,6 +194,42 @@ export default function Home() {
 						/>
 					</div>
 				</section>
+				{blogFeed && blogFeed?.items?.length && (
+					<section className="flex flex-col gap-2">
+						<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
+							Blog
+						</h2>
+						<div className="flex flex-col gap-2">
+							{blogFeed.items.map(({ title, pubDate, link, categories }) => (
+								<Link key={title} href={link} target="blank" className="group">
+									<div className="flex flex-col gap-1">
+										<p className="text-sm text-neutral-300">
+											{formatDate(new Date(pubDate))}
+										</p>
+										<h3 className="font-serif text-xl font-semibold">
+											{title}{" "}
+											<i className="bi bi-arrow-up-right text-base transition-all group-hover:text-blue-500"></i>
+										</h3>
+										{categories.length && (
+											<div className="mt-1 flex flex-wrap gap-2">
+												{categories.map((item) => {
+													return (
+														<div
+															className="text-nowrap rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-xs font-bold text-blue-200 md:text-sm"
+															key={item}
+														>
+															{item}
+														</div>
+													);
+												})}
+											</div>
+										)}
+									</div>
+								</Link>
+							))}
+						</div>
+					</section>
+				)}
 			</div>
 		</div>
 	);
