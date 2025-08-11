@@ -36,7 +36,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 						{labels.map((item) => {
 							return (
 								<div
-									className="rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-sm font-bold text-blue-200"
+									className="rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-xs font-bold text-blue-200 md:text-sm"
 									key={item}
 								>
 									{item}
