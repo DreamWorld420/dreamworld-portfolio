@@ -21,7 +21,7 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 	return (
 		<div className="flex min-h-fit flex-col gap-2">
 			<div className="relative aspect-video min-w-full border border-solid border-neutral-100">
-				<Image fill alt={imageAlt} src={imageSrc} quality={100} />
+				<Image fill alt={imageAlt} src={imageSrc} quality={100} priority />
 			</div>
 			<div className="flex min-h-fit flex-col gap-1">
 				<Link href={projectLink} target="blank" className="group">
