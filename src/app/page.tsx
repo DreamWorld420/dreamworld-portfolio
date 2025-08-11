@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { useInView } from "react-intersection-observer";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -9,9 +8,6 @@ import Link from "next/link";
 import ProjectItem from "@/components/ProjectItem";
 
 export default function Home() {
-	const { ref, inView } = useInView({
-		threshold: 0.03,
-	});
 	const age = useMemo(() => {
 		const birthDate = new Date(2000, 5, 11);
 		const now = new Date();
@@ -119,15 +115,14 @@ export default function Home() {
 				</div>
 			</div>
 
-			<a
+			<Link
 				href="#detail"
-				className={`my-10 flex animate-bounce items-center justify-center text-[40px] transition-all md:hidden ${inView && "opacity-0"} duration-1000`}
+				className="my-10 flex animate-bounce items-center justify-center text-[40px] md:hidden"
 			>
 				<i className="bi bi-chevron-down"></i>
-			</a>
+			</Link>
 
 			<div
-				ref={ref}
 				id="detail"
 				className="hide-scrollbar flex h-fit flex-col gap-8 overflow-auto pb-20 pt-10 md:col-span-8 md:max-h-[calc(100vh_-_80px)] md:pt-0"
 			>
