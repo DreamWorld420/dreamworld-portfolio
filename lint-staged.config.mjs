@@ -1,3 +1,3 @@
 export default {
-	"src/**/*.{ts,tsx,js,jsx}": ["yarn format", "yarn lint:fix"],
+	"src/**/*.{ts,tsx,js,jsx,mjs,json}": ["yarn format", "yarn lint:fix"],
 };

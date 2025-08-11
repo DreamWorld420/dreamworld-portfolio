@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Roboto, Playfair_Display } from "next/font/google";
-import "./globals.css";
+import { Playfair_Display, Roboto } from "next/font/google";
+
 import "bootstrap-icons/font/bootstrap-icons.css";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
 	title: "Kasra Bozorgmehr - Portfolio",

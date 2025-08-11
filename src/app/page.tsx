@@ -1,7 +1,9 @@
 "use client";
+
+import { useMemo } from "react";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef } from "react";
 
 export default function Home() {
 	const age = useMemo(() => {
@@ -22,28 +24,28 @@ export default function Home() {
 	}, []);
 
 	return (
-		<div className="h-screen w-screen flex-col flex items-center justify-center">
-			<div className="max-w-screen-lg h-full px-6  mx-auto grid grid-cols-1 md:grid-cols-12 pt-20 gap-10">
-				<div className="md:col-span-4 max-h-[560px] flex flex-col gap-4">
-					<div className="flex items-center gap-4 ">
+		<div className="flex h-screen w-screen flex-col items-center justify-center">
+			<div className="mx-auto grid h-full max-w-screen-lg grid-cols-1 gap-10 px-6 pt-20 md:grid-cols-12">
+				<div className="flex max-h-[560px] flex-col gap-4 md:col-span-4">
+					<div className="flex items-center gap-4">
 						<Image
 							alt="profile"
-							src={"/personal-profile.jpeg"}
+							src="/personal-profile.jpeg"
 							width={100}
 							height={100}
 							className="rounded-full border border-solid border-neutral-100"
 							quality={100}
 						/>
 						<div>
-							<h1 className="text-xl font-bold font-serif">Kasra Bozorgmehr</h1>
-							<p className="text-sm font-medium text-neutral-400 font-serif">
+							<h1 className="font-serif text-xl font-bold">Kasra Bozorgmehr</h1>
+							<p className="font-serif text-sm font-medium text-neutral-400">
 								Front-End Developer
 							</p>
 							<Link
 								href="mailto:dreamworld420@protonmail.com"
 								className="text-blue-500 hover:underline"
 							>
-								Let's Talk
+								Let&apos;s Talk
 							</Link>
 						</div>
 					</div>
@@ -51,19 +53,19 @@ export default function Home() {
 						Welcome to my space—where modern, responsive, and creative web
 						experiences come to life.
 					</p>
-					<div className="flex gap-2 items-center">
-						<div className="h-[1px] bg-neutral-100 grow"></div>
+					<div className="flex items-center gap-2">
+						<div className="h-[1px] grow bg-neutral-100"></div>
 						<span>~</span>
-						<div className="h-[1px] bg-neutral-100 grow"></div>
+						<div className="h-[1px] grow bg-neutral-100"></div>
 					</div>
 					<p>About Me</p>
-					<div className="flex gap-2 items-center">
-						<div className="h-[1px] bg-neutral-100 grow"></div>
+					<div className="flex items-center gap-2">
+						<div className="h-[1px] grow bg-neutral-100"></div>
 						<span>~</span>
-						<div className="h-[1px] bg-neutral-100 grow"></div>
+						<div className="h-[1px] grow bg-neutral-100"></div>
 					</div>
 					<div className="flex flex-col gap-2">
-						<h2 className="text-lg font-semibold font-serif mb-2">
+						<h2 className="mb-2 font-serif text-lg font-semibold">
 							Connect With Me
 						</h2>
 
@@ -106,9 +108,9 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div className="md:col-span-8 hide-scrollbar overflow-auto max-h-[calc(100vh_-_80px)] flex flex-col gap-8">
+				<div className="hide-scrollbar flex max-h-[calc(100vh_-_80px)] flex-col gap-8 overflow-auto md:col-span-8">
 					<section className="flex flex-col gap-2">
-						<h2 className="text-3xl font-bold font-serif border-b border-solid border-neutral-100 mb-2">
+						<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
 							About Me
 						</h2>
 						<p>
@@ -127,16 +129,16 @@ export default function Home() {
 						</p>
 					</section>
 					<section className="flex flex-col gap-2">
-						<h2 className="text-3xl font-bold font-serif border-b border-solid border-neutral-100 mb-2">
+						<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
 							Skills
 						</h2>
-						<div className="w-full grid grid-cols-5 ">
+						<div className="grid w-full grid-cols-5">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 48 48"
 								width="100px"
 								height="100px"
-								className="hover:scale-110 transition-all ease-out w-full"
+								className="w-full transition-all ease-out hover:scale-110"
 							>
 								<path fill="#ffd600" d="M6,42V6h36v36H6z" />
 								<path
@@ -151,7 +153,7 @@ export default function Home() {
 								width="100"
 								height="100"
 								viewBox="0 0 48 48"
-								className="hover:scale-110 transition-all ease-out w-full"
+								className="w-full transition-all ease-out hover:scale-110"
 							>
 								<rect width="36" height="36" x="6" y="6" fill="#1976d2"></rect>
 								<polygon
