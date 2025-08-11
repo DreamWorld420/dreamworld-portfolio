@@ -124,7 +124,7 @@ export default function Home() {
 
 			<div
 				id="detail"
-				className="hide-scrollbar flex h-fit flex-col gap-8 overflow-auto pb-20 pt-10 md:col-span-8 md:max-h-[calc(100vh_-_80px)] md:pt-0"
+				className="hide-scrollbar flex h-fit flex-col gap-8 overflow-auto pb-20 md:col-span-8 md:max-h-[calc(100vh_-_80px)] md:pt-0"
 			>
 				<section className="flex flex-col gap-2">
 					<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
