@@ -18,7 +18,7 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
 	return (
 		<div className="flex flex-col">
 			<div className="flex items-center justify-between">
-				<Link href={link} className="group">
+				<Link href={link} className="group" target="blank">
 					<h3 className="font-serif text-xl font-semibold">
 						{name}&nbsp;
 						<i className="bi bi-arrow-up-right text-base transition-all group-hover:text-blue-500"></i>
