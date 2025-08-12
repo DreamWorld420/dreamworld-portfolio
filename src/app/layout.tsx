@@ -32,7 +32,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${roboto.variable} ${playfairDisplay.variable} !scroll-smooth font-sans`}
+				className={`${roboto.variable} ${playfairDisplay.variable} font-sans`}
 			>
 				{children}
 			</body>

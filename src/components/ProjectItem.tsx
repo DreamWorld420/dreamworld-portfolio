@@ -19,35 +19,36 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 	title,
 }) => {
 	return (
-		<Link href={projectLink} target="blank" className="group">
-			<div className="flex min-h-fit flex-col gap-2">
-				<div className="relative aspect-video min-w-full border border-solid border-neutral-100">
+		<div className="flex min-h-fit flex-col gap-2">
+			<div className="relative aspect-video min-w-full border border-solid border-neutral-100">
+				<Link href={projectLink} target="blank">
 					<Image fill alt={imageAlt} src={imageSrc} quality={100} priority />
-				</div>
-				<div className="flex min-h-fit flex-col gap-1">
+				</Link>
+			</div>
+			<div className="flex min-h-fit flex-col gap-1">
+				<Link href={projectLink} target="blank" className="group">
 					<h3 className="font-serif text-xl font-semibold">
 						{title}&nbsp;
 						<i className="bi bi-arrow-up-right text-base transition-all group-hover:text-blue-500"></i>
 					</h3>
-
-					<p className="min-h-fit text-neutral-300">{body}</p>
-					{labels?.length && (
-						<div className="mt-1 flex gap-2">
-							{labels.map((item) => {
-								return (
-									<div
-										className="rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-xs font-bold text-blue-200 md:text-sm"
-										key={item}
-									>
-										{item}
-									</div>
-								);
-							})}
-						</div>
-					)}
-				</div>
+				</Link>
+				<p className="min-h-fit text-neutral-300">{body}</p>
+				{labels?.length && (
+					<div className="mt-1 flex gap-2">
+						{labels.map((item) => {
+							return (
+								<div
+									className="rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-xs font-bold text-blue-200 md:text-sm"
+									key={item}
+								>
+									{item}
+								</div>
+							);
+						})}
+					</div>
+				)}
 			</div>
-		</Link>
+		</div>
 	);
 };
 

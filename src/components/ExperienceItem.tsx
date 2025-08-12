@@ -24,9 +24,11 @@ const ExperienceItem: React.FC<ExperienceItemProps> = ({
 						<i className="bi bi-arrow-up-right text-base transition-all group-hover:text-blue-500"></i>
 					</h3>
 				</Link>
-				<p className="text-sm font-semibold text-neutral-300">{date}</p>
+				<p className="text-sm text-neutral-400">{date}</p>
 			</div>
-			<p className="mb-1 font-serif font-medium text-neutral-300">{role}</p>
+			<p className="mb-1 font-serif text-sm font-medium text-neutral-400">
+				{role}
+			</p>
 			<ul className="list-disc pl-5 text-sm">
 				{items?.length && items.map((item) => <li key={item}>{item}</li>)}
 			</ul>
