@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import AboutMe from "@/components/AboutMe";
-import ProjectItem from "@/components/ProjectItem";
+import BlogFeed from "@/components/BlogFeed";
+import ExperienceItem from "@/components/ExperienceItem";
+import Projects from "@/components/Projects";
 import { getRSSFeed } from "@/services";
 
 export default async function Home() {
@@ -11,13 +13,6 @@ export default async function Home() {
 		blogFeed = await getRSSFeed();
 	} catch {
 		blogFeed = null;
-	}
-
-	function formatDate(date: Date) {
-		const year = date.getFullYear();
-		const month = String(date.getMonth() + 1).padStart(2, "0");
-		const day = String(date.getDate()).padStart(2, "0");
-		return `${year}/${month}/${day}`;
 	}
 
 	return (
@@ -123,113 +118,84 @@ export default async function Home() {
 				className="hide-scrollbar flex h-fit flex-col gap-8 overflow-auto pb-10 md:col-span-8 md:max-h-[calc(100vh_-_80px)] md:pb-20 md:pt-0"
 			>
 				<AboutMe />
-				{blogFeed && blogFeed?.items?.length && (
-					<section className="flex flex-col gap-2">
-						<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
-							Blog Posts
-						</h2>
-						<div className="flex flex-col gap-2">
-							{blogFeed.items.map(({ title, pubDate, link, categories }) => (
-								<Link key={title} href={link} target="blank" className="group">
-									<div className="flex flex-col gap-1">
-										<p className="text-sm text-neutral-300">
-											{formatDate(new Date(pubDate))}
-										</p>
-										<h3 className="font-serif text-xl font-semibold">
-											{title}{" "}
-											<i className="bi bi-arrow-up-right text-base transition-all group-hover:text-blue-500"></i>
-										</h3>
-										{categories.length && (
-											<div className="mt-1 flex flex-wrap gap-2">
-												{categories.map((item) => {
-													return (
-														<div
-															className="text-nowrap rounded-3xl border border-solid border-blue-200 bg-blue-200 bg-opacity-15 px-2 text-xs font-bold text-blue-200 md:text-sm"
-															key={item}
-														>
-															{item}
-														</div>
-													);
-												})}
-											</div>
-										)}
-									</div>
-								</Link>
-							))}
-						</div>
-					</section>
-				)}
 				<section className="flex flex-col gap-2">
 					<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
-						Projects
+						Experience
 					</h2>
-					<div className="flex flex-col gap-10">
-						<ProjectItem
-							title="Triangle Studio"
-							body="A creative media studio based in Vienna specializing in
-										photography, video production, and 360° virtual tours.
-										Developed a modern, responsive website using React.js and
-										Tailwind CSS to showcase their portfolio and improve client
-										engagement"
-							projectLink="https://trianglestudio.org/"
-							imageAlt="triangle_studio"
-							imageSrc="/triangle_studio.png"
-							labels={["React", "Framer Motion", "Tailwind CSS"]}
+					<div className="flex flex-col gap-2">
+						<ExperienceItem
+							name="CanDo"
+							link="https://cando.ac/"
+							date="Jan. 2025 ‐ Present"
+							items={[
+								"Refactored legacy student and teacher panels using React, Next.js, and TypeScript, improving UI performance by 35%",
+								"Optimized front‐end rendering, reducing page load times by 45%.",
+								"Standardized code practices, decreasing bug frequency by 30%",
+								"Collaborated with stakeholders to prioritize features, improving development efficiency by 25%.",
+							]}
 						/>
-						<ProjectItem
-							title="DigiProxy"
-							body="A platform offering secure, high‑speed proxies for privacy
-										and performance. Built a responsive Next.js interface with
-										Tailwind CSS, optimizing UX for account management and
-										subscription flows."
-							projectLink="https://digiproxy.cc/"
-							imageAlt="digiproxy"
-							imageSrc="/digiproxy.png"
-							labels={["React", "Next.js", "Tailwind CSS"]}
+						<ExperienceItem
+							name="Nercidev"
+							link="https://www.google.com/url?sa=D&q=https://web.archive.org/web/20241006162417/http://nercidev.com/&ust=1755087600000000&usg=AOvVaw0otjZpPb7DmIRipXtfmrk3&hl=en"
+							date="Nov. 2023 – Jan. 2025"
+							items={[
+								"Built multiple CRM dashboards and modernized a fragile legacy codebase using Next.js and TypeScript, improving system stability by 30%.",
+								"Streamlined team workflows, helping deliver projects 20% faster.",
+								"Maintained and fixed legacy code from multiple developers, reducing recurring bugs by 25%.",
+								"Worked closely with designers to ensure pixel‐perfect, user‐friendly interfaces.",
+							]}
 						/>
-
-						<ProjectItem
-							title="DigiProxy Dashboard"
-							body="Developed a secure and responsive user dashboard for managing proxy subscriptions, built with React.js, Next.js and Tailwind CSS. Implemented optimized API integration and state management."
-							projectLink="https://dashboard.digiproxy.cc/sign-in"
-							imageAlt="digiproxy dashboard"
-							imageSrc="/digiproxy_dashboard.png"
-							labels={["React", "Next.js", "Framer Motion", "Tailwind CSS"]}
+						<ExperienceItem
+							name="SeBuDA"
+							link="https://sebuda.com/"
+							date="Jan. 2022 – Nov. 2023"
+							items={[
+								"Added multi‐language support, reaching 5+ markets and increasing sign‐ups by 20%.",
+								"Enabled multi‐currency, handling 10+ currencies and boosting sales by 18%.",
+								"Built WebSocket escrow, cutting processing time by 50% and ensuring 99.9% uptime.",
+								"Created admin/user panels, reducing task time by 45% and raising productivity.",
+								"Improved technical SEO, increasing organic traffic 25% in six months.",
+								"Refactored a legacy codebase to improve performance by 35%",
+							]}
 						/>
-						<ProjectItem
-							title="Resi.GG"
-							body="A privacy‑focused service enabling secure internet access through alternate IP addresses. Developed a responsive marketing website using Next.js and Tailwind CSS to highlight features and improve conversion."
-							projectLink="https://resi.gg/"
-							imageAlt="resi.gg"
-							imageSrc="/resi_gg.png"
-							labels={["React", "Next.js", "Framer Motion", "Tailwind CSS"]}
+						<ExperienceItem
+							name="Cygen"
+							link="https://cygenco.com/"
+							date="Apr. 2021 – Jan. 2022"
+							items={[
+								"Built and optimized features using React, Next.js, and TypeScript, improving speed by 25%.",
+								"Refactored legacy code, reducing bugs by 30% and improving maintainability.",
+								"Updated older projects in HTML/CSS/JS, reducing cross‐browser issues by 40%.",
+								"Collaborated with designers and stakeholders to deliver features on time and to spec.",
+							]}
 						/>
-						<ProjectItem
-							title="Resi.GG Dashboard"
-							body="Built a dynamic user dashboard for proxy management and subscription controls using React.js, Next.js and Tailwind CSS, improving usability and reducing account setup time by 25%."
-							projectLink="https://dashboard.resi.gg/login"
-							imageAlt="resi.gg dashboard"
-							imageSrc="/resi_gg_dashboard.png"
-							labels={["React", "Next.js", "Framer Motion", "Tailwind CSS"]}
+						<ExperienceItem
+							name="Avangard Tech"
+							link="https://avangardtech.com/"
+							date="Mar. 2020 – Apr. 2021"
+							items={[
+								"Built websites using Next.js and TypeScript, meeting 100% of client deadlines.",
+								"Optimized site performance, reducing load times by 40% and improving Core Web Vitals scores.",
+								"Implemented SEO best practices, increasing organic traffic by up to 25% for client sites.",
+								"Collaborated directly with clients to align deliverables with business goals.",
+							]}
 						/>
-						<ProjectItem
-							title="Heavens Proxy"
-							body="A high‑performance proxy service offering reliable and cost‑effective IP solutions for anonymous web crawling. Built a responsive Next.js platform with Tailwind CSS, improving onboarding flow and subscription management UX."
-							projectLink="https://hproxy.com/"
-							imageAlt="Heavens Proxy"
-							imageSrc="/hproxy.png"
-							labels={["React", "Next.js", "Framer Motion", "Tailwind CSS"]}
-						/>
-						<ProjectItem
-							title="TrustProxy"
-							body="A premium proxy solution providing fast, secure, and anonymous browsing through a vast IP pool. Built a responsive Next.js website with Tailwind CSS, enhancing SEO performance and user engagement."
-							projectLink="https://trustproxy.io/"
-							imageAlt="TrustProxy"
-							imageSrc="/tproxy.png"
-							labels={["React", "Next.js", "Framer Motion", "Tailwind CSS"]}
+						<ExperienceItem
+							name="Freelancing"
+							link="https://dreamworld-protfolio.netlify.app/"
+							date="Jun. 2019 – Mar. 2020"
+							items={[
+								"Developed websites using React and TypeScript.",
+								"Delivered custom web solutions aligned with client requirements.",
+								"Integrated REST APIs and third‐party services.",
+								"Optimized for SEO, accessibility, and performance.",
+								"Provided support, troubleshooting, and feature updates.",
+							]}
 						/>
 					</div>
 				</section>
+				<BlogFeed blogFeed={blogFeed} />
+				<Projects />
 			</div>
 		</div>
 	);
