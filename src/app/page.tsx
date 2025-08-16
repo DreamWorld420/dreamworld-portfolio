@@ -7,6 +7,8 @@ import ExperienceItem from "@/components/ExperienceItem";
 import Projects from "@/components/Projects";
 import { getRSSFeed } from "@/services";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
 	let blogFeed;
 	try {

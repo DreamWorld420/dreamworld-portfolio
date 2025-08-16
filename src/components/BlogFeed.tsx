@@ -39,7 +39,7 @@ const BlogFeed: React.FC<BlogFeedProps> = ({ blogFeed }) => {
 				<h2 className="mb-2 border-b border-solid border-neutral-100 font-serif text-3xl font-bold">
 					Blog Posts
 				</h2>
-				<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-4">
 					{blogFeed.items.map(({ title, pubDate, link, categories }) => (
 						<Link key={title} href={link} target="blank" className="group">
 							<div className="flex flex-col gap-1">
